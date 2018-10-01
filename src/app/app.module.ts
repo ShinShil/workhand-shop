@@ -1,16 +1,56 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { MatCardModule, MatButtonModule, MatSelectModule, MatToolbarModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { MainComponent } from './pages/main/main.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { TopMenuComponent } from './components/top-menu/top-menu.component';
+import { GoodCardComponent } from './components/good-card/good-card.component';
+import { InMemoryServerService } from './dev/in-memory-server.service';
+import { ServerService } from './services/server.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { AppRoutingModule } from './app-routing.module';
+import { MenuService } from './services/menu.service';
+import { GoodsComponent } from './pages/goods/goods.component';
+import { GoodListComponent } from './components/good-list/good-list.component';
+import { GoodFilterComponent } from './components/good-filter/good-filter.component';
+import { GoodFilterService } from './services/good-filter.service';
+
+const COMPONENTS = [
+    AppComponent,
+    MainComponent,
+    FooterComponent,
+    TopMenuComponent,
+    GoodCardComponent,
+    GoodsComponent,
+    GoodListComponent,
+    GoodFilterComponent
+];
+
+const SERVICES = [
+  InMemoryServerService,
+  ServerService,
+  MenuService,
+  GoodFilterService
+]
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [ ...COMPONENTS ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryServerService),
+    AppRoutingModule,
+    MatCardModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatToolbarModule
   ],
-  providers: [],
+  providers: [...SERVICES],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

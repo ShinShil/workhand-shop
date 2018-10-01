@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="d-flex justify-content-between">
+    <span class="logo">Logo</span>
+    <div>
+      <a mat-button
+        *ngFor="let link of links"
+        [routerLink]="link.href">{{ link.title }}</a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
