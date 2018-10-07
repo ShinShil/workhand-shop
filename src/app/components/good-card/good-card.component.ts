@@ -14,4 +14,8 @@ export class GoodCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  canEditGood(good: IGood) {
+    return good.userId === 1;
+  }
+
 }

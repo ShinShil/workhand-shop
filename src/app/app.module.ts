@@ -21,6 +21,10 @@ import { GoodFilterService } from './services/good-filter.service';
 import { FormsModule } from '@angular/forms';
 import { StringFilterComponent } from './components/filters/string-filter/string-filter.component';
 import { AmountFilterComponent } from './components/filters/amount-filter/amount-filter.component';
+import { EditGoodComponent } from './pages/goods/edit-good/edit-good.component';
+import { UserComponent } from './pages/user/user.component';
+import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationComponent } from './pages/authentication/authentication.component';
 
 const COMPONENTS = [
   AppComponent,
@@ -32,14 +36,18 @@ const COMPONENTS = [
   GoodListComponent,
   GoodFilterComponent,
   StringFilterComponent,
-  AmountFilterComponent
+  AmountFilterComponent,
+  EditGoodComponent,
+  UserComponent,
+  AuthenticationComponent
 ];
 
 const SERVICES = [
   InMemoryServerService,
   ServerService,
   MenuService,
-  GoodFilterService
+  GoodFilterService,
+  AuthenticationService
 ]
 
 @NgModule({

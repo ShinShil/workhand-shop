@@ -17,7 +17,7 @@ export class FilterWorker implements IFilterWorker {
         return pass;
     }
 
-    getFilteredDataBySingleFilter<T>(items: T[], filterConfiguration: IFilterConfiguration<IFilter>) {
+    getFilteredDataBySingleFilter<T>(items: T[], filterConfiguration: IFilterConfiguration<IFilter, any>) {
         const filterFunc = filterConfiguration.filter.filterValue;
         const getValue = filterConfiguration.getValueFromObject;
         return items.filter(item => filterFunc(getValue(item)));

@@ -1,4 +1,4 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { ControlValueAccessorBase } from '../../../utils/control-value-accessor.base';
@@ -14,5 +14,5 @@ import { ControlValueAccessorBase } from '../../../utils/control-value-accessor.
     }]
 })
 export class AmountFilterComponent extends ControlValueAccessorBase<IAmountFilter> {
-
+  @Input() resources: IFilterResourcesLabel;
 }

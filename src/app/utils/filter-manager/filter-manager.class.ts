@@ -6,7 +6,7 @@ export class FilterManager implements IFilterManager<string> {
     }
 
     constructor(
-        public readonly filterConfiguration: { [key: string]: IFilterConfiguration<IFilter> }
+        public readonly filterConfiguration: { [key: string]: IFilterConfiguration<IFilter, any> }
     ) {
         this.filterConfiguration = filterConfiguration || {};
     }

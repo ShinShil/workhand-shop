@@ -4,6 +4,7 @@ interface IGood {
     cost: number;
     shortDescription: string;
     previewImageUrl?: string;
+    userId?: number;
 }
 
 interface IMenuItem {
@@ -16,12 +17,13 @@ interface IFilter {
     filterValue(value: any): boolean;
 }
 
-interface IFilterConfiguration<TFilter> {
+interface IFilterConfiguration<TFilter, TResources> {
     getValueFromObject(object: any): any;
     filter: TFilter;
+    resources?: TResources;
 }
 
-interface IFilterUI<TFilter> extends IFilterConfiguration<TFilter> {
+interface IFilterResourcesLabel {
     label: string;
 }
 
@@ -31,7 +33,7 @@ interface IFilterWorker {
 }
 
 interface IFilterManager<TFilterKey> {
-    readonly filterConfiguration: { [key: string]: IFilterConfiguration<IFilter> };
+    readonly filterConfiguration: { [key: string]: IFilterConfiguration<IFilter, any> };
     readonly filterKeys: TFilterKey[];
     addFilter(filter: IFilter, filterKey: TFilterKey, getValue?: (object: any) => any);
     removeFilter(filterKey: TFilterKey);
@@ -53,6 +55,12 @@ interface IAmountFilter extends IFilter {
 }
 
 type IGoodsFilterConfiguration = {
-    name: IFilterUI<IStringFilter>;
-    cost: IFilterUI<IAmountFilter>;
+    name: IFilterConfiguration<IStringFilter, IFilterResourcesLabel>;
+    costStart: IFilterConfiguration<IAmountFilter, IFilterResourcesLabel>;
+    costEnd: IFilterConfiguration<IAmountFilter, IFilterResourcesLabel>;
+}
+
+interface IUser {
+    id: number,
+    name: string;
 }

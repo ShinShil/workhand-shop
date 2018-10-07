@@ -21,16 +21,31 @@ export class GoodFilterService {
   }
 
   private get goodsFilterConfiguration(): IGoodsFilterConfiguration {
+    const costStart = new AmountFilter();
+    costStart.greater = true;
+    const costEnd = new AmountFilter();
+    costEnd.lower = true;
     return {
+      costEnd: {
+        filter: costEnd,
+        getValueFromObject: (good: IGood) => good.cost,
+        resources: {
+          label: 'Cost End'
+        }
+      },
+      costStart: {
+        filter: costStart,
+        getValueFromObject: (good: IGood) => good.cost,
+        resources: {
+          label: 'Cost Start'
+        }
+      },
       name: {
         filter: new StringFilter(),
         getValueFromObject: (good: IGood) => good.name,
-        label: 'Name'
-      },
-      cost: {
-        filter: new AmountFilter(),
-        getValueFromObject: (good: IGood) => good.cost,
-        label: 'Cost'
+        resources: {
+          label: 'Name'
+        }
       }
     }
   }

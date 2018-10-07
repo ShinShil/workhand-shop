@@ -5,6 +5,16 @@
       <a mat-button
         *ngFor="let link of links"
         [routerLink]="link.href">{{ link.title }}</a>
+      <a mat-button routerLink="/user">User</a>
+      <div class="d-inline" *ngIf="!isAuthenticated; else auth">
+        <a mat-button 
+          routerLink="/authenticate">
+          Sign In/Up
+        </a>
+      </div>
+      <ng-template #auth>
+        <button mat-button (click)="logout()">Logout</button>
+      </ng-template>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -1,16 +1,25 @@
 <div class="container">
-  <div class="d-flex">
-    <div *ngFor="let filterItem of filter | keyvalue">
-      <div [ngSwitch]="filterItem.value.filter.type">
-        <app-string-filter *ngSwitchCase="filterTypes.STRING"
-          [(ngModel)]="filterItem.value.filter"
-          (ngModelChange)="updateFilter(filterItem.key)">
-        </app-string-filter>
-        <app-amount-filter *ngSwitchCase="filterTypes.AMOUNT"
-          [(ngModel)]="filterItem.value.filter"
-          (ngModelChange)="updateFilter(filterItem.key)">
-        </app-amount-filter>
+  <mat-card class="filters-card">
+    <mat-card-header>
+      <mat-card-title>Filters</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="d-flex">
+        <div class="filter-item" *ngFor="let filterItem of filter | keyvalue">
+          <div [ngSwitch]="filterItem.value.filter.type">
+            <app-string-filter *ngSwitchCase="filterTypes.STRING"
+              [(ngModel)]="filterItem.value.filter"
+              [resources]="filterItem.value.resources"
+              (ngModelChange)="updateFilter(filterItem.key)">
+            </app-string-filter>
+            <app-amount-filter *ngSwitchCase="filterTypes.AMOUNT"
+              [(ngModel)]="filterItem.value.filter"
+              [resources]="filterItem.value.resources"
+              (ngModelChange)="updateFilter(filterItem.key)">
+            </app-amount-filter>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card>
 </div>

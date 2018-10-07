@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef } from '@angular/core';
+import { Component, OnInit, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessorBase } from 'src/app/utils/control-value-accessor.base';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -13,5 +13,5 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     }]
 })
 export class StringFilterComponent extends ControlValueAccessorBase<IStringFilter> {
-
+  @Input() resources: IFilterResourcesLabel;
 }

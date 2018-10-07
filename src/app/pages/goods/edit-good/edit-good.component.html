@@ -1,0 +1,26 @@
+<div *ngIf="good"
+  class="container">
+  <div class="good d-flex flex-column">
+    <mat-form-field>
+      <input type="text"
+        [(ngModel)]="good.name"
+        placeholder="Name"
+        matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text"
+        [(ngModel)]="good.cost"
+        placeholder="Cost"
+        matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea [(ngModel)]="good.shortDescription"
+        placeholder="shortDescription"
+        matInput></textarea>
+    </mat-form-field>
+    <div class="image-control">
+      <img *ngIf="good.previewImageUrl" [src]="good.previewImageUrl" />
+      <button mat-button>Add Image</button>
+    </div>
+  </div>
+</div>

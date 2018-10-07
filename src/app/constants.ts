@@ -1,6 +1,7 @@
 const WebApiUrl = 'api';
 export const Urls = {
-    GOODS: `${WebApiUrl}/goods`
+    GOODS: `${WebApiUrl}/goods`,
+    USERS: `${WebApiUrl}/users`
 };
 
 export const FilterTypes = {

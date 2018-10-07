@@ -33,9 +33,19 @@ export class InMemoryServerService {
             }
         ];
 
-        goods.forEach(good => good.previewImageUrl = this.getGoodPreviewImageUrl(good.id));
+        goods.forEach((good, index) => {
+            good.previewImageUrl = this.getGoodPreviewImageUrl(good.id);
+            good.userId = index < 3 ? 1 : 2
+        });
 
-        return { goods };
+        const users = [
+            {
+                login: 'user',
+                password: '123456'
+            }
+        ]
+
+        return { goods, users };
     }
 
     private getGoodPreviewImageUrl(goodId: number) {
