@@ -1,30 +1,26 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
-type FilterType = 'string' | 'amount';
+import { GoodFilterService } from '../../services/good-filter.service';
+import { clone } from 'lodash';
+import { FilterTypes } from '../../constants';
+
 @Component({
   selector: 'app-good-filter',
   templateUrl: './good-filter.component.html',
   styleUrls: ['./good-filter.component.scss']
 })
-export class GoodFilterComponent implements OnInit {
-  @Input() filterConfig: { [key: string]: any };
-  @Input() filter: { [key: string]: any };
-  @Output() filterChange: { [key: string]: any };
+export class GoodFilterComponent {
+  @Output() filterChange = new EventEmitter<string>();
+  filterTypes = clone(FilterTypes);
 
-  constructor() { }
-
-  ngOnInit() {
+  get filter(): IGoodsFilterConfiguration {
+    return this.goodsFilterService.filterManager.filterConfiguration as IGoodsFilterConfiguration;
   }
 
-  get appliedFilters(): string[] {
-    return Object.keys(this.filter)
+  constructor(private goodsFilterService: GoodFilterService) { }
+
+  updateFilter(key: string) {
+    this.filterChange.emit(key);
   }
 
-  addFilter(filterKey: string) {
-
-  }
-
-  removeFilter(filterKey: string) {
-
-  }
 }

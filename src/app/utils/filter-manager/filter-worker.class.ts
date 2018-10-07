@@ -16,4 +16,10 @@ export class FilterWorker implements IFilterWorker {
         }
         return pass;
     }
+
+    getFilteredDataBySingleFilter<T>(items: T[], filterConfiguration: IFilterConfiguration<IFilter>) {
+        const filterFunc = filterConfiguration.filter.filterValue;
+        const getValue = filterConfiguration.getValueFromObject;
+        return items.filter(item => filterFunc(getValue(item)));
+    }
 }

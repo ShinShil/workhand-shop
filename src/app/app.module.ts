@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { MatCardModule, MatButtonModule, MatSelectModule, MatToolbarModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatSelectModule, MatToolbarModule, MatInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
@@ -18,16 +18,21 @@ import { GoodsComponent } from './pages/goods/goods.component';
 import { GoodListComponent } from './components/good-list/good-list.component';
 import { GoodFilterComponent } from './components/good-filter/good-filter.component';
 import { GoodFilterService } from './services/good-filter.service';
+import { FormsModule } from '@angular/forms';
+import { StringFilterComponent } from './components/filters/string-filter/string-filter.component';
+import { AmountFilterComponent } from './components/filters/amount-filter/amount-filter.component';
 
 const COMPONENTS = [
-    AppComponent,
-    MainComponent,
-    FooterComponent,
-    TopMenuComponent,
-    GoodCardComponent,
-    GoodsComponent,
-    GoodListComponent,
-    GoodFilterComponent
+  AppComponent,
+  MainComponent,
+  FooterComponent,
+  TopMenuComponent,
+  GoodCardComponent,
+  GoodsComponent,
+  GoodListComponent,
+  GoodFilterComponent,
+  StringFilterComponent,
+  AmountFilterComponent
 ];
 
 const SERVICES = [
@@ -38,17 +43,19 @@ const SERVICES = [
 ]
 
 @NgModule({
-  declarations: [ ...COMPONENTS ],
+  declarations: [...COMPONENTS],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryServerService),
     AppRoutingModule,
+    FormsModule,
     MatCardModule,
     MatButtonModule,
     MatSelectModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatInputModule
   ],
   providers: [...SERVICES],
   bootstrap: [AppComponent]

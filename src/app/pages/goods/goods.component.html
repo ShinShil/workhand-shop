@@ -1,5 +1,4 @@
-<app-good-filter>
-
+<app-good-filter (filterChange)="filterGoods()">
 </app-good-filter>
-<app-good-list [goods]="goods | async">
+<app-good-list [goods]="filteredGoods">
 </app-good-list>

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable, of as ObservableOf } from 'rxjs';
 import { FilterManager } from '../utils/filter-manager/filter-manager.class';
 import { StringFilter } from '../utils/filter-manager/filters/string-filter.class';
 import { AmountFilter } from '../utils/filter-manager/filters/amount-filter.class';
@@ -12,7 +11,7 @@ export class GoodFilterService {
   filterManager: IFilterManager<string>;
   filterWorker: IFilterWorker;
 
-  constructor() { 
+  constructor() {
     this.filterManager = new FilterManager(this.goodsFilterConfiguration);
     this.filterWorker = new FilterWorker();
   }
@@ -25,12 +24,14 @@ export class GoodFilterService {
     return {
       name: {
         filter: new StringFilter(),
-        getValueFromObject: (good: IGood) => good.name
+        getValueFromObject: (good: IGood) => good.name,
+        label: 'Name'
       },
-      cost:{
+      cost: {
         filter: new AmountFilter(),
-        getValueFromObject: (good: IGood) => good.cost
-      } 
+        getValueFromObject: (good: IGood) => good.cost,
+        label: 'Cost'
+      }
     }
   }
 

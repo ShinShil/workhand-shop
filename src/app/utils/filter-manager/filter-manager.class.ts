@@ -19,8 +19,7 @@ export class FilterManager implements IFilterManager<string> {
         }
     }
 
-    public removeFilter(filterKey: string) {
+    removeFilter(filterKey: string) {
         delete this.filterConfiguration[filterKey];
     }
-
 }

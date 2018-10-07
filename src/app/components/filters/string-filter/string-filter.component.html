@@ -1,0 +1,6 @@
+<mat-form-field *ngIf="value">
+  <input matInput
+    [(ngModel)]="value.value"
+    [placeholder]="value.label"
+    (ngModelChange)="callOnChange(value)" />
+</mat-form-field>

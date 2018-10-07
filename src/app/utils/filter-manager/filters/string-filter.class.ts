@@ -2,6 +2,10 @@ import { FilterTypes } from "../../../constants";
 
 export class StringFilter implements IStringFilter {
     value: string;
+    startsWith: boolean;
+    contains: boolean;
+    endsWith: boolean;
+    ignoreCase: boolean;
 
     constructor() {
 
@@ -12,6 +16,7 @@ export class StringFilter implements IStringFilter {
     }
 
     filterValue(value: string): boolean {
-        return value.toLowerCase().indexOf(this.value.toLowerCase()) > -1;
+        return this.value == null
+        || value.toLowerCase().indexOf(this.value.toLowerCase()) > -1;
     }
 }

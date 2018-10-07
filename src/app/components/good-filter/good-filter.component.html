@@ -1,5 +1,16 @@
-<div *ngFor="let filterItem of filter | keyvalue">
-  <div [ngSwitchCase]="filterConfig[filterItem.key]">
-    
+<div class="container">
+  <div class="d-flex">
+    <div *ngFor="let filterItem of filter | keyvalue">
+      <div [ngSwitch]="filterItem.value.filter.type">
+        <app-string-filter *ngSwitchCase="filterTypes.STRING"
+          [(ngModel)]="filterItem.value.filter"
+          (ngModelChange)="updateFilter(filterItem.key)">
+        </app-string-filter>
+        <app-amount-filter *ngSwitchCase="filterTypes.AMOUNT"
+          [(ngModel)]="filterItem.value.filter"
+          (ngModelChange)="updateFilter(filterItem.key)">
+        </app-amount-filter>
+      </div>
+    </div>
   </div>
 </div>
