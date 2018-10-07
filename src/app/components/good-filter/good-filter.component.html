@@ -1,3 +1,5 @@
-<p>
-  good-filter works!
-</p>
+<div *ngFor="let filterItem of filter | keyvalue">
+  <div [ngSwitchCase]="filterConfig[filterItem.key]">
+    
+  </div>
+</div>

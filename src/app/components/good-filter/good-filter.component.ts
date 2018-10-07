@@ -1,11 +1,13 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 
+type FilterType = 'string' | 'amount';
 @Component({
   selector: 'app-good-filter',
   templateUrl: './good-filter.component.html',
   styleUrls: ['./good-filter.component.scss']
 })
 export class GoodFilterComponent implements OnInit {
+  @Input() filterConfig: { [key: string]: any };
   @Input() filter: { [key: string]: any };
   @Output() filterChange: { [key: string]: any };
 
@@ -14,7 +16,7 @@ export class GoodFilterComponent implements OnInit {
   ngOnInit() {
   }
 
-  get appliedFilters():  string[] {
+  get appliedFilters(): string[] {
     return Object.keys(this.filter)
   }
 
