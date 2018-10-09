@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { MatCardModule, MatButtonModule, MatSelectModule, MatToolbarModule, MatInputModule } from '@angular/material';
+import { MatTabsModule, MatCardModule, MatButtonModule, MatSelectModule, MatToolbarModule, MatInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
@@ -25,6 +25,10 @@ import { EditGoodComponent } from './pages/goods/edit-good/edit-good.component';
 import { UserComponent } from './pages/user/user.component';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
+import { RouterModule } from '@angular/router';
+import { AccountComponent } from './pages/user/account/account.component';
+import { MessagesComponent } from './pages/user/messages/messages.component';
+import { ManageGoodsComponent } from './pages/user/manage-goods/manage-goods.component';
 
 const COMPONENTS = [
   AppComponent,
@@ -39,6 +43,9 @@ const COMPONENTS = [
   AmountFilterComponent,
   EditGoodComponent,
   UserComponent,
+  AccountComponent,
+  MessagesComponent,
+  ManageGoodsComponent,
   AuthenticationComponent
 ];
 
@@ -56,12 +63,14 @@ const SERVICES = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    RouterModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryServerService),
     AppRoutingModule,
     FormsModule,
     MatCardModule,
     MatButtonModule,
     MatSelectModule,
+    MatTabsModule,
     MatToolbarModule,
     MatInputModule
   ],

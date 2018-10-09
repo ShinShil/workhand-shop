@@ -14,6 +14,14 @@ export class MenuService {
         ];
     }
 
+    getUserMenu(): IMenuItem[] {
+        return [
+            this.getLink('Account', '/user/account'),
+            this.getLink('Messages', '/user/messages'),
+            this.getLink('Manage goods', '/user/manage-goods')
+        ];
+    }
+
     getLink(title: string, href: string): IMenuItem {
         return { title, href };
     }
