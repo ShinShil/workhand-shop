@@ -3,18 +3,12 @@
     <span class="logo">Logo</span>
     <div>
       <a mat-button
-        *ngFor="let link of links"
+        *ngFor="let link of (links | async)"
         [routerLink]="link.href">{{ link.title }}</a>
-      <a mat-button routerLink="/user">User</a>
-      <div class="d-inline" *ngIf="!isAuthenticated; else auth">
-        <a mat-button 
-          routerLink="/authenticate">
-          Sign In/Up
-        </a>
-      </div>
-      <ng-template #auth>
-        <button mat-button (click)="logout()">Logout</button>
-      </ng-template>
+      <button class="d-inline"
+        *ngIf="isAuthenticated"
+        mat-button
+        (click)="logout()">Logout</button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

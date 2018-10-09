@@ -40,6 +40,7 @@ export class InMemoryServerService {
 
         const users = [
             {
+                id: 1,
                 login: 'user',
                 password: '123456'
             }

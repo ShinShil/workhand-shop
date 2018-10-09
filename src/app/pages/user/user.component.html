@@ -1,7 +1,7 @@
 <div class="container">
   <nav mat-tab-nav-bar>
     <a mat-tab-link
-      *ngFor="let menuItem of menuItems"
+      *ngFor="let menuItem of (menuItems | async)"
       [routerLink]="menuItem.href"
       routerLinkActive
       #rla="routerLinkActive"

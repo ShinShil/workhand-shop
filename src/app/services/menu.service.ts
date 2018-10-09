@@ -1,20 +1,50 @@
-import { AuthenticationService } from "./authentication.service";
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class MenuService {
-    constructor(private authenticationService: AuthenticationService) {
+    private topMenuSubject: BehaviorSubject<IMenuItem[]>
+        = new BehaviorSubject<IMenuItem[]>(this.getTopAuthMenu());
+    private userMenuSubject: BehaviorSubject<IMenuItem[]>
+        = new BehaviorSubject<IMenuItem[]>(this.getUserMenu());
 
+    constructor(private authenticationService: AuthenticationService) {
+        this.authenticationService.userInfo
+            .subscribe(() => {
+                const newMenu = this.authenticationService.isAuthenticated
+                    ? this.getTopAuthMenu()
+                    : this.getTopNotAuthMenu();
+                this.topMenuSubject.next(newMenu);
+            });
     }
 
-    getTopMenu(): IMenuItem[] {
+    get topMenu(): BehaviorSubject<IMenuItem[]> {
+        return this.topMenuSubject;
+    }
+
+    get userMenu(): BehaviorSubject<IMenuItem[]> {
+        return this.userMenuSubject;
+    }
+
+    private getTopAuthMenu(): IMenuItem[] {
         return [
             this.getLink('Home', '/home'),
             this.getLink('Goods', '/goods'),
+            this.getLink('User', '/user')
         ];
     }
 
-    getUserMenu(): IMenuItem[] {
+    private getTopNotAuthMenu(): IMenuItem[] {
+        return [
+            this.getLink('Home', '/home'),
+            this.getLink('Goods', '/goods'),
+            this.getLink('Sign In/Up', '/authenticate')
+        ];
+    }
+
+    private getUserMenu(): IMenuItem[] {
         return [
             this.getLink('Account', '/user/account'),
             this.getLink('Messages', '/user/messages'),

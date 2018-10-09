@@ -1,28 +1,30 @@
-import { HttpClient } from "@angular/common/http";
-import { Urls } from "../constants";
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
+import { Urls } from '../constants';
+import { ServerService } from './server.service';
 
 @Injectable()
 export class AuthenticationService {
-    user: IUser;
+    private user: BehaviorSubject<IUser> = new BehaviorSubject<IUser>(null);
 
-    constructor(private httpClient: HttpClient) { }
+    get userInfo(): BehaviorSubject<IUser> {
+        return this.user;
+    }
 
-    login(): void {
-        this.httpClient.get<IGood[]>(Urls.GOODS)
-            .subscribe(goods => {
-                this.user = {
-                    id: 1,
-                    name: 'Admin'
-                }
-            });
+    constructor(private serverService: ServerService) { }
+
+    login(): BehaviorSubject<IUser> {
+        this.serverService.get<IUser>(Urls.USERS, 1)
+            .subscribe(user => this.user.next(user));
+        return this.userInfo;
     }
 
     logout(): void {
-        this.user = null;
+        this.user.next(null);
     }
 
     get isAuthenticated(): boolean {
-        return !!this.user;
+        return !!this.user.value;
     }
 }
